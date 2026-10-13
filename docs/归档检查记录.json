@@ -38,5 +38,7 @@
     "同步视频和申报底稿当前文件名",
     "更新引用与文件校验",
     "重新生成材料整包；视频与申报正文不变"
-  ]
+  ],
+  "visibility_current": "public",
+  "visibility_changed_at": "2026-10-13"
 }

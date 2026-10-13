@@ -1,0 +1,69 @@
+test_cross_origin_rejected (test_bridge.ApiTests.test_cross_origin_rejected) ... ok
+test_no_confirmation_no_export (test_bridge.ApiTests.test_no_confirmation_no_export) ... ok
+test_roundtrip_download_and_immutable_history (test_bridge.ApiTests.test_roundtrip_download_and_immutable_history) ... ok
+test_ambiguous_natural_language (test_bridge.BridgeTests.test_ambiguous_natural_language) ... ok
+test_bad_employee_does_not_consume_balance (test_bridge.BridgeTests.test_bad_employee_does_not_consume_balance) ... ok
+test_bad_plan_operators_rejected (test_bridge.BridgeTests.test_bad_plan_operators_rejected) ... ok
+test_csv_formula_protection (test_bridge.BridgeTests.test_csv_formula_protection) ... ok
+test_date_formats_and_invalid (test_bridge.BridgeTests.test_date_formats_and_invalid) ... ok
+test_decimal_not_binary (test_bridge.BridgeTests.test_decimal_not_binary) ... ok
+test_duplicate_conflicts_all_isolated (test_bridge.BridgeTests.test_duplicate_conflicts_all_isolated) ... ok
+test_identity_conflict (test_bridge.BridgeTests.test_identity_conflict) ... ok
+test_independent_excel_formula_oracle (test_bridge.BridgeTests.test_independent_excel_formula_oracle) ... ok
+test_local_natural_language (test_bridge.BridgeTests.test_local_natural_language) ... ok
+test_main_annual_personal (test_bridge.BridgeTests.test_main_annual_personal) ... ok
+test_missing_balance_never_zero_fallback (test_bridge.BridgeTests.test_missing_balance_never_zero_fallback) ... ok
+test_missing_mapping_rejected (test_bridge.BridgeTests.test_missing_mapping_rejected) ... ok
+test_number_noise (test_bridge.BridgeTests.test_number_noise) ... ok
+test_numeric_id_blocked (test_bridge.BridgeTests.test_numeric_id_blocked) ... ok
+test_order_independent_input (test_bridge.BridgeTests.test_order_independent_input) ... ok
+test_overtime_department_and_dates (test_bridge.BridgeTests.test_overtime_department_and_dates) ... ok
+test_partial_period_isolated (test_bridge.BridgeTests.test_partial_period_isolated) ... ok
+test_perturbed_file_changes_output (test_bridge.BridgeTests.test_perturbed_file_changes_output) ... ok
+test_row_accounting (test_bridge.BridgeTests.test_row_accounting) ... ok
+test_source_formula_isolation (test_bridge.BridgeTests.test_source_formula_isolation) ... ok
+test_table_input_contract (test_bridge.BridgeTests.test_table_input_contract) ... ok
+test_template_unknown_column_requires_constant (test_bridge.BridgeTests.test_template_unknown_column_requires_constant) ... ok
+test_template_with_data_rejected (test_bridge.BridgeTests.test_template_with_data_rejected) ... ok
+test_unapproved_and_outside_date_excluded (test_bridge.BridgeTests.test_unapproved_and_outside_date_excluded) ... ok
+test_unconfirmed_rules_rejected (test_bridge.BridgeTests.test_unconfirmed_rules_rejected) ... ok
+test_unknown_header_can_be_configured (test_bridge.BridgeTests.test_unknown_header_can_be_configured) ... ok
+test_unknown_status_blocks_employee (test_bridge.BridgeTests.test_unknown_status_blocks_employee) ... ok
+test_xlsx_template_text_ids_numbers_dates (test_bridge.BridgeTests.test_xlsx_template_text_ids_numbers_dates) ... ok
+test_model_http_failure_no_local_fallback (test_bridge.PlannerTests.test_model_http_failure_no_local_fallback) ... Model planning failed: HTTP 401
+ok
+test_model_invalid_json_no_execution (test_bridge.PlannerTests.test_model_invalid_json_no_execution) ... Model planning failed: JSONDecodeError
+ok
+test_model_request_contains_only_instruction_and_headers (test_bridge.PlannerTests.test_model_request_contains_only_instruction_and_headers) ... ok
+test_complete_http_human_confirmation_export_and_memory (test_universal.UniversalApiTests.test_complete_http_human_confirmation_export_and_memory) ... ok
+test_export_gate_and_snapshot (test_universal.UniversalStateTests.test_export_gate_and_snapshot) ... ok
+test_failed_new_run_invalidates_old_result (test_universal.UniversalStateTests.test_failed_new_run_invalidates_old_result) ... ok
+test_template_with_business_data_rejected (test_universal.UniversalStateTests.test_template_with_business_data_rejected) ... ok
+test_templates_require_success_and_recompute (test_universal.UniversalStateTests.test_templates_require_success_and_recompute) ... ok
+test_csv_unrepresentable_character_fails_without_loss (test_universal.UniversalTests.test_csv_unrepresentable_character_fails_without_loss) ... ok
+test_diff_tracks_original_values_per_output_row (test_universal.UniversalTests.test_diff_tracks_original_values_per_output_row) ... ok
+test_duplicate_conflict_pauses_all_conflicting_outputs (test_universal.UniversalTests.test_duplicate_conflict_pauses_all_conflicting_outputs) ... ok
+test_empty_join_key_cannot_match_missing_identifier (test_universal.UniversalTests.test_empty_join_key_cannot_match_missing_identifier) ... ok
+test_file_perturbation_changes_result (test_universal.UniversalTests.test_file_perturbation_changes_result) ... ok
+test_formula_header_rejected_and_plain_csv_header_remains_text (test_universal.UniversalTests.test_formula_header_rejected_and_plain_csv_header_remains_text) ... ok
+test_invalid_filter_cannot_be_overridden_by_cell_edit (test_universal.UniversalTests.test_invalid_filter_cannot_be_overridden_by_cell_edit) ... ok
+test_missing_address_is_not_guessed (test_universal.UniversalTests.test_missing_address_is_not_guessed) ... ok
+test_model_only_gets_headers_by_default (test_universal.UniversalTests.test_model_only_gets_headers_by_default) ... ok
+test_no_formula_execution_in_exports (test_universal.UniversalTests.test_no_formula_execution_in_exports) ... ok
+test_no_silent_corruption_of_malformed_thousands (test_universal.UniversalTests.test_no_silent_corruption_of_malformed_thousands) ... ok
+test_numeric_id_is_not_guessed (test_universal.UniversalTests.test_numeric_id_is_not_guessed) ... ok
+test_pause_correct_and_revalidate (test_universal.UniversalTests.test_pause_correct_and_revalidate) ... ok
+test_real_xls_roundtrip (test_universal.UniversalTests.test_real_xls_roundtrip) ... ok
+test_restricted_code_rejects_escape_attempts (test_universal.UniversalTests.test_restricted_code_rejects_escape_attempts) ... ok
+test_schema_cannot_reorder_columns_or_add_regex_code (test_universal.UniversalTests.test_schema_cannot_reorder_columns_or_add_regex_code) ... ok
+test_skip_is_explicit_and_audited (test_universal.UniversalTests.test_skip_is_explicit_and_audited) ... ok
+test_source_formulas_pause_even_when_not_in_output (test_universal.UniversalTests.test_source_formulas_pause_even_when_not_in_output) ... ok
+test_two_schemas_cleaning_and_provenance (test_universal.UniversalTests.test_two_schemas_cleaning_and_provenance) ... ok
+test_unknown_headers_and_join_are_dynamic (test_universal.UniversalTests.test_unknown_headers_and_join_are_dynamic) ... ok
+test_xls_formulas_are_not_trusted (test_universal.UniversalTests.test_xls_formulas_are_not_trusted) ... ok
+test_xlsx_and_all_csv_encodings_roundtrip (test_universal.UniversalTests.test_xlsx_and_all_csv_encodings_roundtrip) ... ok
+
+----------------------------------------------------------------------
+Ran 62 tests in 3.334s
+
+OK

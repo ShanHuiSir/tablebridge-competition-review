@@ -1,0 +1,150 @@
+{
+  "video_file": "跨系统表格数据自动化桥接与处理智能体-演示视频.mp4",
+  "duration_seconds": 183.39,
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "video_codec": "H.264",
+  "audio_codec": "AAC",
+  "audio_sample_rate": 48000,
+  "neural_voice": "Kokoro zh v1.1 / zf_001",
+  "subtitles": "burned Chinese subtitles + UTF-8 SRT sidecar",
+  "subtitle_segments": 30,
+  "full_decode_passed": true,
+  "mean_volume_dbfs": -16.7,
+  "max_volume_dbfs": -1.5,
+  "video_bytes": 11479859,
+  "sha256": "fb496513120aa97dd6eebed3c8fd3ff2b2812057ace9167a1bfd8fdfbc750062",
+  "chapters": [
+    {
+      "chapter": "业务问题",
+      "start_seconds": 0,
+      "duration_seconds": 18.481,
+      "captured_frames": 191,
+      "max_capture_gap_seconds": 0.11,
+      "removed_wait_seconds": 0,
+      "encoded_keyframe_seconds": 13
+    },
+    {
+      "chapter": "接入文件",
+      "start_seconds": 18.481,
+      "duration_seconds": 19.025,
+      "captured_frames": 197,
+      "max_capture_gap_seconds": 0.151,
+      "removed_wait_seconds": 0,
+      "encoded_keyframe_seconds": 32.481
+    },
+    {
+      "chapter": "描述处理要求",
+      "start_seconds": 37.506,
+      "duration_seconds": 26.046,
+      "captured_frames": 270,
+      "max_capture_gap_seconds": 0.098,
+      "removed_wait_seconds": 1.08,
+      "encoded_keyframe_seconds": 51.506
+    },
+    {
+      "chapter": "核对并执行",
+      "start_seconds": 63.552,
+      "duration_seconds": 20.121,
+      "captured_frames": 206,
+      "max_capture_gap_seconds": 0.335,
+      "removed_wait_seconds": 0,
+      "encoded_keyframe_seconds": 68.552
+    },
+    {
+      "chapter": "核查转换结果",
+      "start_seconds": 83.673,
+      "duration_seconds": 26.025,
+      "captured_frames": 269,
+      "max_capture_gap_seconds": 0.099,
+      "removed_wait_seconds": 0,
+      "encoded_keyframe_seconds": 101.673
+    },
+    {
+      "chapter": "处理异常",
+      "start_seconds": 109.697,
+      "duration_seconds": 21.675,
+      "captured_frames": 224,
+      "max_capture_gap_seconds": 0.109,
+      "removed_wait_seconds": 0,
+      "encoded_keyframe_seconds": 122.697
+    },
+    {
+      "chapter": "导出成果",
+      "start_seconds": 131.372,
+      "duration_seconds": 22.424,
+      "captured_frames": 225,
+      "max_capture_gap_seconds": 0.368,
+      "removed_wait_seconds": 0,
+      "encoded_keyframe_seconds": 140.372
+    },
+    {
+      "chapter": "保存与复用",
+      "start_seconds": 153.796,
+      "duration_seconds": 29.512,
+      "captured_frames": 302,
+      "max_capture_gap_seconds": 0.383,
+      "removed_wait_seconds": 0,
+      "encoded_keyframe_seconds": 173.796
+    }
+  ],
+  "export_verification": {
+    "sample_data": true,
+    "source_records": 7,
+    "negative_removed": 1,
+    "duplicates_removed": 1,
+    "output_records": 5,
+    "issues_before": 1,
+    "issues_after": 0,
+    "corrected_phone": "13800138001",
+    "xls_signature": "d0cf11e0a1b11ae1",
+    "row_0001": [
+      "0001",
+      "张琳",
+      "20260115",
+      "13800138000",
+      1250.5,
+      "浙江省",
+      "杭州市",
+      "西湖区"
+    ],
+    "zip_members": [
+      "import.xls",
+      "audit.json",
+      "workflow.py"
+    ],
+    "export_sha256": "3775a9d1b337ddfb9fdc2833f714f5d87df2a9ed2c3ca69eb9b1d64a5e912c09",
+    "audit_run_id": "bdbccdc0a5aa4973a6b886f940e55dea",
+    "model_status": "real DeepSeek API generation; no offline demo selected",
+    "requested_model": "deepseek-chat",
+    "response_model": "deepseek-flash",
+    "response_id": "b177ffee-fe0e-4b3f-b585-1a1f551acc23",
+    "model_usage": {
+      "prompt_tokens": 1476,
+      "completion_tokens": 731,
+      "total_tokens": 2207,
+      "prompt_tokens_details": {
+        "cached_tokens": 768
+      },
+      "prompt_cache_hit_tokens": 768,
+      "prompt_cache_miss_tokens": 708
+    },
+    "unverified": [
+      "production system import",
+      "Windows desktop execution"
+    ]
+  },
+  "capture_method": "Continuous real browser viewport screenshots, cursor follows actual mouse events; 24fps encoded playback repeats captured frames; chapters omit recorder scheduling gaps. Source UI business values were not redrawn.",
+  "visual_checks": [
+    "eight encoded chapter keyframes",
+    "source fields and 4+3 records",
+    "real DeepSeek generation label and code",
+    "target schema and actual code",
+    "5 results and 2 removal events",
+    "phone edit and 0 unresolved issues",
+    "XLS readback note and real downloads",
+    "template save and reuse label"
+  ],
+  "quality_notes": "Subtitle/voice timing follows generated WAV boundaries; key result holds and scrolls are timed to the spoken feature. Video uses synthetic data; live DeepSeek generation is verified on two synthetic schema cases; production import and Windows execution remain unverified."
+}

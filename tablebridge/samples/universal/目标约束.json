@@ -1,0 +1,51 @@
+{
+  "columns": [
+    {
+      "name": "Emp_ID",
+      "type": "text",
+      "required": true,
+      "pattern": "digits"
+    },
+    {
+      "name": "Emp_Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "JoinDate",
+      "type": "date",
+      "required": true,
+      "format": "%Y%m%d"
+    },
+    {
+      "name": "Mobile",
+      "type": "text",
+      "required": true,
+      "pattern": "phone"
+    },
+    {
+      "name": "Amount",
+      "type": "decimal",
+      "required": true,
+      "min": "0"
+    },
+    {
+      "name": "Province",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "City",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "District",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "unique": [
+    "Emp_ID"
+  ]
+}

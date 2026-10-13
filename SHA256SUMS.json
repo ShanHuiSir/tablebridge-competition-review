@@ -1,0 +1,330 @@
+{
+  ".gitignore": {
+    "bytes": 139,
+    "sha256": "eab8dc65fd80a1db86f46497564906010a6abee90b731de3158cc6db8e6fdf61"
+  },
+  "README.md": {
+    "bytes": 3999,
+    "sha256": "470bbde6a1ff7852a48a4f84054c55a3aed6e716d43f0f193f331c394ebbe6ad"
+  },
+  "artifacts/提交说明.md": {
+    "bytes": 1985,
+    "sha256": "7eaaad8f208bafa2766f2cab63019e5742d5b73f89513cce82da400131aad23e"
+  },
+  "artifacts/文件校验.json": {
+    "bytes": 1618,
+    "sha256": "02af1335d58872cf104818f30ac40c301870d1392a438f5618b6504528956e2b"
+  },
+  "artifacts/演示解说词.md": {
+    "bytes": 3737,
+    "sha256": "74777a44b7a8e5f9577060e50f7fcd23ec8cb24609f5cdf69d88d3e45a0d87f8"
+  },
+  "artifacts/版本与验证范围说明.md": {
+    "bytes": 2756,
+    "sha256": "b004f01c0ab9a7793ba6939e0decd9bb18875a77635ff170277af835c917a240"
+  },
+  "artifacts/表桥_参赛材料整包.zip": {
+    "bytes": 11346802,
+    "sha256": "633c34cb6834397092d866a09e61a5fcd9bc674680c59214692d6d275648360c"
+  },
+  "artifacts/表桥_源码_通用版.zip": {
+    "bytes": 188213,
+    "sha256": "1242f1ef0e2e2682a10b6ec517fb7610bafd87bc2487499b94ae997f19b41220"
+  },
+  "artifacts/表桥_演示字幕.srt": {
+    "bytes": 3329,
+    "sha256": "2f87888623d53b392823469ff788f0f03acc909db0bce4306e4c90dc26f0a4a2"
+  },
+  "artifacts/视频实测导出成果.zip": {
+    "bytes": 5177,
+    "sha256": "0ccdb3a236c7acc22f2540ddb702fa884342e37ba0d345d893fb11c3d00fff64"
+  },
+  "artifacts/视频验收报告.json": {
+    "bytes": 4795,
+    "sha256": "5a644bfd168170489c36c77134bbcc68a3c256c604771e111888a89c67c2de8f"
+  },
+  "artifacts/跨系统表格数据自动化桥接与处理智能体-演示视频.mp4": {
+    "bytes": 11479859,
+    "sha256": "fb496513120aa97dd6eebed3c8fd3ff2b2812057ace9167a1bfd8fdfbc750062"
+  },
+  "artifacts/跨系统表格数据自动化桥接与处理智能体-申报书.docx": {
+    "bytes": 43891,
+    "sha256": "c2b09e3c6a49ac8e661389a87fa27171a283e9efd0c1a2192ec34251fd327f87"
+  },
+  "artifacts/通用Agent模型GUI实测.json": {
+    "bytes": 14686,
+    "sha256": "87daee633527aefe59c7519d244730354c13f2ffd60dc79b92efc87f67675984"
+  },
+  "artifacts/通用Agent模型实测.json": {
+    "bytes": 11772,
+    "sha256": "995ad83ec9cd17ea9b4f2acba7cf0ffc8fc2a35b8e0df4a82fca07a1e72f97ac"
+  },
+  "docs/参考命题/跨系统表格数据转换智能体人力行政.docx": {
+    "bytes": 15632,
+    "sha256": "12387d80c1522570f3d1d7b143c8af85c8c163f8aebc7f8e5c7bf3ae37f01828"
+  },
+  "docs/复盘笔记.md": {
+    "bytes": 3674,
+    "sha256": "6ce29d4f9300a6520710ef3c3abc44c6c27158aac581322e1b8c113825fd009a"
+  },
+  "docs/归档检查记录.json": {
+    "bytes": 1141,
+    "sha256": "fe5b4b86f6074627dd2663d76110d5ac3f30247d52f85e4f3323aa2715589cd4"
+  },
+  "tablebridge/.env.example": {
+    "bytes": 200,
+    "sha256": "3c999dfe9617edb4fe537e2393a99b31b239cb0fa4b1392921cc27fcfd3bd42f"
+  },
+  "tablebridge/.gitignore": {
+    "bytes": 50,
+    "sha256": "2b977e3b978a3b3f4f5e6fe8c08dec9a17ca2080f42f35c8cb4a419963b1da36"
+  },
+  "tablebridge/README.md": {
+    "bytes": 12803,
+    "sha256": "bd125000e6be3ab407c1bc357d6d7e5db71131c59c0e9478b6e3529b8e20f3db"
+  },
+  "tablebridge/TableBridge.spec": {
+    "bytes": 726,
+    "sha256": "aaf91285c7861867c38427425fc482f0f13c3e07ee56c1bbbb509b0ba1852a24"
+  },
+  "tablebridge/app.py": {
+    "bytes": 8994,
+    "sha256": "439c2a8acf1511cef4493ba1dc452ed93edbb5c0fdb85687c7b5d946955bf09f"
+  },
+  "tablebridge/core.py": {
+    "bytes": 19507,
+    "sha256": "dc8e9d9da6fb2b368d25925312fa73727297002fb2400f44dc810f68e4bcb677"
+  },
+  "tablebridge/desktop.py": {
+    "bytes": 1146,
+    "sha256": "9f938a196021461bf8f4020823fad95c1ba235d22d0c6c988b12d00bf270cee0"
+  },
+  "tablebridge/docs/动态代码沙箱安全说明.md": {
+    "bytes": 4272,
+    "sha256": "960cb253cc86a0447c3276f694aa9f7868bd788408f84472dcf3f9eb340908f2"
+  },
+  "tablebridge/docs/示例输出/leave/audit.json": {
+    "bytes": 11430,
+    "sha256": "57e8a64e47da25377b87eb15c76dfff9d4cef1978c607c2d03fdfe5c47610968"
+  },
+  "tablebridge/docs/示例输出/leave/exceptions.csv": {
+    "bytes": 2784,
+    "sha256": "c593a3d26784c0450daf6846d03a8fd000c8ce4ce8289cfcae4511db28ca87b6"
+  },
+  "tablebridge/docs/示例输出/leave/import.xlsx": {
+    "bytes": 63303,
+    "sha256": "f3fcbf7cf8bf8b9b43a19247e517ca82ed6c0a0ef93bcc8f6f0e21d9e769a8ad"
+  },
+  "tablebridge/docs/示例输出/leave/ledger.csv": {
+    "bytes": 278,
+    "sha256": "baac80a605c6b97b85125beffbc10d9f0935b657f9aba52787fffe58d3aac78c"
+  },
+  "tablebridge/docs/示例输出/overtime/audit.json": {
+    "bytes": 5158,
+    "sha256": "ce015eea90cfdd2facec79b99e62880cb729aaddff9785d2dd1be363a3dab8ac"
+  },
+  "tablebridge/docs/示例输出/overtime/exceptions.csv": {
+    "bytes": 344,
+    "sha256": "3a39d7db56e096348acfb63f964bdd745e7feae499cf67941be18c899ba59f76"
+  },
+  "tablebridge/docs/示例输出/overtime/import.xlsx": {
+    "bytes": 59400,
+    "sha256": "edbb8eaeff0dcb045ffbbca513d10cbca0e55e3fb872470abe9a9d15e1239d39"
+  },
+  "tablebridge/docs/示例输出/overtime/ledger.csv": {
+    "bytes": 79,
+    "sha256": "5d8b02d6597f39f96443ae5794d72d02e487dc9c94e1e9206124ea2330bb1a49"
+  },
+  "tablebridge/docs/自动化测试日志.txt": {
+    "bytes": 3659,
+    "sha256": "3cc461197f227a62673c613d01c6279c3129f32eda512fd7016677335dded003"
+  },
+  "tablebridge/docs/评审视频复现说明.md": {
+    "bytes": 2461,
+    "sha256": "9b348fe79b3d6f60f66ff3d57c0e38d78736d1d87d8552eec45c6b768002fc2d"
+  },
+  "tablebridge/docs/通用AgentPrompt策略.md": {
+    "bytes": 4998,
+    "sha256": "3ef4284992547a9bf27dccd74ecd1142c68ad01c97250a8371e349c5d5e224ec"
+  },
+  "tablebridge/docs/通用Agent模型GUI实测.json": {
+    "bytes": 14686,
+    "sha256": "87daee633527aefe59c7519d244730354c13f2ffd60dc79b92efc87f67675984"
+  },
+  "tablebridge/docs/通用Agent模型实测.json": {
+    "bytes": 11772,
+    "sha256": "995ad83ec9cd17ea9b4f2acba7cf0ffc8fc2a35b8e0df4a82fca07a1e72f97ac"
+  },
+  "tablebridge/docs/通用示例输出/audit_csv.json": {
+    "bytes": 13116,
+    "sha256": "26ac35cd14f1b9fbd4571b9d8009fc16e01d2c4a9e292650bf431e942d14220e"
+  },
+  "tablebridge/docs/通用示例输出/audit_xls.json": {
+    "bytes": 13111,
+    "sha256": "ee24288433af088a9c5286a57b577f3cab40d6f642216c678a24d6c324ddc9c0"
+  },
+  "tablebridge/docs/通用示例输出/audit_xlsx.json": {
+    "bytes": 13112,
+    "sha256": "1123826baef795b79a276b717434ae8d3bf44149b07ac2c317d88710095735f0"
+  },
+  "tablebridge/docs/通用示例输出/import.csv": {
+    "bytes": 357,
+    "sha256": "ae641891407744aa691a84e1fe075c2535f54d3724dbd1ee308791642788bd68"
+  },
+  "tablebridge/docs/通用示例输出/import.xls": {
+    "bytes": 5632,
+    "sha256": "3775a9d1b337ddfb9fdc2833f714f5d87df2a9ed2c3ca69eb9b1d64a5e912c09"
+  },
+  "tablebridge/docs/通用示例输出/import.xlsx": {
+    "bytes": 5423,
+    "sha256": "8cd942b7dbeee9d39047057ef37e4dc963f49044bbf3a9a7354c177b925ff1a9"
+  },
+  "tablebridge/docs/通用示例输出/workflow.py": {
+    "bytes": 931,
+    "sha256": "24e47e1dee1eecb7dbee516ab1c3a16cbce1db8c3a4e90fc50de3d30bd6b9646"
+  },
+  "tablebridge/docs/通用转换自动化测试日志.txt": {
+    "bytes": 7081,
+    "sha256": "61a74c9ef3004a0ca69d5972b5cfbec08aaab7e982d2bb52660b16dbae137a5e"
+  },
+  "tablebridge/docs/通用转换验收记录.md": {
+    "bytes": 5825,
+    "sha256": "8c8473c1c54ed3d3e969f05affe62c6190ef6cddb86b1ae874449256325275c2"
+  },
+  "tablebridge/docs/验收记录.md": {
+    "bytes": 4845,
+    "sha256": "e1a98b9f746f7aa76496b7608151c4cebb970ff98cd8c95cf7fe33a5263270e6"
+  },
+  "tablebridge/planner.py": {
+    "bytes": 5666,
+    "sha256": "47cc6fb3f9864f09a817b48bd99239c65d978beb183edfa16377779dce32ee86"
+  },
+  "tablebridge/requirements-desktop.txt": {
+    "bytes": 55,
+    "sha256": "b9be70b1e042c44b76295334a0a6855ccc68e1e80af54ac0adbc6a8cb5ad9ada"
+  },
+  "tablebridge/requirements.txt": {
+    "bytes": 40,
+    "sha256": "6a015b0fef35b602a664efb871ccb160be713f83ca565b398c41e10601d2bebd"
+  },
+  "tablebridge/samples/ERP_加班_模拟.csv": {
+    "bytes": 602,
+    "sha256": "360f667d79ac84efa02c660da8dbb43652bd5ee76bc4752885c54512058f322e"
+  },
+  "tablebridge/samples/HR_加班导入模板_模拟.xlsx": {
+    "bytes": 52428,
+    "sha256": "7f691ef97bfb6c4f7ff45a58adc2087b0f3ca11d02591bc3696b28f118c22d99"
+  },
+  "tablebridge/samples/HR_年假余额_模拟.csv": {
+    "bytes": 157,
+    "sha256": "c17d0677ec521f2712502bce6c778572a334d835078b3419f1522113d7c1ad80"
+  },
+  "tablebridge/samples/HR_请假导入模板_模拟.xlsx": {
+    "bytes": 64261,
+    "sha256": "e4cd8f2b30830664dbf14853d3f53bd5dbb81986304836c0ea999e86a92bc188"
+  },
+  "tablebridge/samples/OA_请假_模拟.csv": {
+    "bytes": 1435,
+    "sha256": "837778c94b02d5f1d8e9b1df86778b31f52b428b24e9063d3b185181e2dcdba7"
+  },
+  "tablebridge/samples/universal/目标HR_员工导入.xlsx": {
+    "bytes": 4986,
+    "sha256": "f285c8900787a1ae89358c196476c958e99d08b9b84e1fb5f41e651da6d6d9d0"
+  },
+  "tablebridge/samples/universal/目标约束.json": {
+    "bytes": 815,
+    "sha256": "bd19bb25656c992abbb96ed43e82784e81819728ff035a20c98300e028201945"
+  },
+  "tablebridge/samples/universal/系统A_员工报销.xlsx": {
+    "bytes": 5415,
+    "sha256": "42dc79e5e279abfde21c8fd8cfcf3c5a94c0a47bd5c16cf2f745aa02352a290c"
+  },
+  "tablebridge/samples/universal/系统B_员工费用.csv": {
+    "bytes": 268,
+    "sha256": "fe76114f817e2ac0396fa00d4d30de7824421db89760dabdce85310cc93d2432"
+  },
+  "tablebridge/samples/variants/HR_余额扰动_4天.csv": {
+    "bytes": 121,
+    "sha256": "15961adad467c19f4bf93ff50faf8ff32ef377b0b70f7a0d6ac6d526af237ec2"
+  },
+  "tablebridge/samples/独立公式核算_模拟.xlsx": {
+    "bytes": 4433,
+    "sha256": "0a04496e4d302533320f0f5393587fdec7ec45d6e0ab884eb116782f6c6ec0cb"
+  },
+  "tablebridge/sandbox.py": {
+    "bytes": 16944,
+    "sha256": "73b2d816ccf6d178aa8f0a5494a05bec943e93854030adc29566c6a9fac7fd5d"
+  },
+  "tablebridge/scripts/create_universal_samples.py": {
+    "bytes": 2225,
+    "sha256": "f24a24053388e99e2b1e04cc35f8b141557fa2e8710add27782c3efe766f50a7"
+  },
+  "tablebridge/scripts/package_source.py": {
+    "bytes": 2210,
+    "sha256": "a8587e5769db08a20873d808669f92c5dafee155ce9770182aac2bc326d4e1ed"
+  },
+  "tablebridge/scripts/run_universal_demo.py": {
+    "bytes": 1664,
+    "sha256": "4ea1a5cf44242f53cdb59404fdcacd1b69caa1be69493c3a1e23a5313fc168d5"
+  },
+  "tablebridge/scripts/verify_live_model.py": {
+    "bytes": 4473,
+    "sha256": "d6ee5f6a5d157d08a4882b6ba95bb6c9f46741c7e008ba23846fcb08c3e6dd04"
+  },
+  "tablebridge/static/app.js": {
+    "bytes": 10951,
+    "sha256": "692221616d8e0fd42b29b6595a075ecb3cea0fd70a506755e4c09522d5e1a451"
+  },
+  "tablebridge/static/index.html": {
+    "bytes": 3914,
+    "sha256": "3fb5b141e3d89c3ffe63263b6fe1297dad9e54cd5c73855e9ec239fca1cd2be2"
+  },
+  "tablebridge/static/style.css": {
+    "bytes": 6194,
+    "sha256": "aa7ea46af5c1b4ff237b0177b4a17b847c46e0b5b091b5b7fe245826a78a7876"
+  },
+  "tablebridge/static/workbench.css": {
+    "bytes": 3837,
+    "sha256": "4a7b799fa714b6f7611f09a9fb7fdf04d78e011a3e1383543aac53d27945d962"
+  },
+  "tablebridge/static/workbench.html": {
+    "bytes": 7906,
+    "sha256": "5255a7626c65c29b9765759d955430205e0d3440841616f760094805d044c8da"
+  },
+  "tablebridge/static/workbench.js": {
+    "bytes": 16252,
+    "sha256": "e8173b03cb944685e39cfc40eb85fd4401811b03a9ae476530f7be6f4af117ba"
+  },
+  "tablebridge/tests/test_bridge.py": {
+    "bytes": 12038,
+    "sha256": "ab7b8bf14e197361ef01313aa0a7ce8d74a28de42276c888537c6bf540299d37"
+  },
+  "tablebridge/tests/test_universal.py": {
+    "bytes": 15793,
+    "sha256": "824f0f6457514a382e35f41131d375876213f65babf08bd12369b5b1be886c78"
+  },
+  "tablebridge/universal.py": {
+    "bytes": 27179,
+    "sha256": "8efde511d76c5cad4506cddd1498437b85899f1289645c1bc910712309a50821"
+  },
+  "tablebridge/universal_api.py": {
+    "bytes": 10339,
+    "sha256": "6a3784a00faca8a2d5dbcd2811bb50152cbe16635280595ce2bd7a04eab7194a"
+  },
+  "tablebridge/启动.bat": {
+    "bytes": 191,
+    "sha256": "5d19c4cbb44b7617d9ca6a4d4c872f9b70ef9d860a5c5286e921cb54e7acce04"
+  },
+  "tablebridge/启动.command": {
+    "bytes": 171,
+    "sha256": "5a5306ff408e28cc84564289e2cd0d6d2749a19749e9706dfaa894dcee88ed29"
+  },
+  "tablebridge/构建Windows.bat": {
+    "bytes": 409,
+    "sha256": "68a376587b3779324127f2b530f3b7ea06fc466311169c1e6523d0b8a63431b4"
+  },
+  "tablebridge/桌面启动.bat": {
+    "bytes": 237,
+    "sha256": "a36ad699c7a86607489ffd9bac35b7ed04fd2491cc55ddb49223dd7149350fa0"
+  }
+}

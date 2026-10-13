@@ -1,0 +1,46 @@
+{
+  "提交说明.md": {
+    "bytes": 1985,
+    "sha256": "7eaaad8f208bafa2766f2cab63019e5742d5b73f89513cce82da400131aad23e"
+  },
+  "演示解说词.md": {
+    "bytes": 3737,
+    "sha256": "74777a44b7a8e5f9577060e50f7fcd23ec8cb24609f5cdf69d88d3e45a0d87f8"
+  },
+  "版本与验证范围说明.md": {
+    "bytes": 2756,
+    "sha256": "b004f01c0ab9a7793ba6939e0decd9bb18875a77635ff170277af835c917a240"
+  },
+  "表桥_源码_通用版.zip": {
+    "bytes": 188213,
+    "sha256": "1242f1ef0e2e2682a10b6ec517fb7610bafd87bc2487499b94ae997f19b41220"
+  },
+  "表桥_演示字幕.srt": {
+    "bytes": 3329,
+    "sha256": "2f87888623d53b392823469ff788f0f03acc909db0bce4306e4c90dc26f0a4a2"
+  },
+  "视频实测导出成果.zip": {
+    "bytes": 5177,
+    "sha256": "0ccdb3a236c7acc22f2540ddb702fa884342e37ba0d345d893fb11c3d00fff64"
+  },
+  "视频验收报告.json": {
+    "bytes": 4795,
+    "sha256": "5a644bfd168170489c36c77134bbcc68a3c256c604771e111888a89c67c2de8f"
+  },
+  "跨系统表格数据自动化桥接与处理智能体-演示视频.mp4": {
+    "bytes": 11479859,
+    "sha256": "fb496513120aa97dd6eebed3c8fd3ff2b2812057ace9167a1bfd8fdfbc750062"
+  },
+  "跨系统表格数据自动化桥接与处理智能体-申报书.docx": {
+    "bytes": 43891,
+    "sha256": "c2b09e3c6a49ac8e661389a87fa27171a283e9efd0c1a2192ec34251fd327f87"
+  },
+  "通用Agent模型GUI实测.json": {
+    "bytes": 14686,
+    "sha256": "87daee633527aefe59c7519d244730354c13f2ffd60dc79b92efc87f67675984"
+  },
+  "通用Agent模型实测.json": {
+    "bytes": 11772,
+    "sha256": "995ad83ec9cd17ea9b4f2acba7cf0ffc8fc2a35b8e0df4a82fca07a1e72f97ac"
+  }
+}

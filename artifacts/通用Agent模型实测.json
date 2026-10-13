@@ -1,0 +1,264 @@
+{
+  "verified_at": "2026-10-12T14:21:31.342803+00:00",
+  "provider": "DeepSeek",
+  "request_model": "deepseek-chat",
+  "sample_values_shared": false,
+  "confirmed_prompt": "将两份系统导出表合并为目标 HR 模板。保留工号前导零，清除姓名两端空格、手机号中的连字符和空格，将入职日期转为 YYYYMMDD，剔除金额小于 0 的行，按工号去重，将地址拆分为省市区。异常值暂停询问，不要猜测。 业务口径已确认：同工号且完整内容一致才去重，内容冲突保留并请求人工；异常手机号不推断，按11位手机号约束暂停导出；源日期含 YYYY/MM/DD、YYYY-MM-DD、YYYYMMDD 和 YYYY年M月D日，cast 的 date format 参数指定输出格式，内置解析支持这些输入；地址只拆明确行政后缀，缺失保留异常并人工处理。已确认的这些口径无需再次提问，其他真正不确定之处仍须提问。",
+  "cases": [
+    {
+      "case": "双系统员工转换",
+      "status": "passed",
+      "source_headers": {
+        "source1": [
+          "员工编号",
+          "员工姓名",
+          "入职日期",
+          "联系电话",
+          "报销金额",
+          "家庭地址"
+        ],
+        "source2": [
+          "person_code",
+          "full_name",
+          "hired_on",
+          "mobile",
+          "claim_total",
+          "home_address"
+        ]
+      },
+      "plan": {
+        "summary": "将 source1 与 source2 分别映射到目标 HR 模板字段后合并：工号/姓名/手机号保持文本并清理两端空白，手机号去除连字符和空格；入职日期统一转为 YYYYMMDD；金额转为 decimal 并剔除小于 0 的行；地址拆分为省、市、区；按 Emp_ID 去重（仅完全一致记录去重，冲突保留待人工）。异常值不猜测，交由类型校验与人工处理。",
+        "code": "rows1 = table(\"source1\")\nrows1 = map_fields(rows1, {\"Emp_ID\":\"员工编号\", \"Emp_Name\":\"员工姓名\", \"JoinDate\":\"入职日期\", \"Mobile\":\"联系电话\", \"Amount\":\"报销金额\", \"家庭地址\":\"家庭地址\"})\nrows1 = trim(rows1, [\"Emp_ID\", \"Emp_Name\", \"Mobile\", \"家庭地址\"])\nrows1 = replace_text(rows1, \"Mobile\", {\"-\":\"\", \" \":\"\"})\nrows1 = cast(rows1, \"JoinDate\", \"date\", format=\"%Y%m%d\")\nrows1 = cast(rows1, \"Amount\", \"decimal\")\nrows1 = filter_rows(rows1, \"Amount\", \"ge\", 0, numeric_compare=True)\nrows1 = split_address(rows1, \"家庭地址\", \"Province\", \"City\", \"District\")\nrows2 = table(\"source2\")\nrows2 = map_fields(rows2, {\"Emp_ID\":\"person_code\", \"Emp_Name\":\"full_name\", \"JoinDate\":\"hired_on\", \"Mobile\":\"mobile\", \"Amount\":\"claim_total\", \"家庭地址\":\"home_address\"})\nrows2 = trim(rows2, [\"Emp_ID\", \"Emp_Name\", \"Mobile\", \"家庭地址\"])\nrows2 = replace_text(rows2, \"Mobile\", {\"-\":\"\", \" \":\"\"})\nrows2 = cast(rows2, \"JoinDate\", \"date\", format=\"%Y%m%d\")\nrows2 = cast(rows2, \"Amount\", \"decimal\")\nrows2 = filter_rows(rows2, \"Amount\", \"ge\", 0, numeric_compare=True)\nrows2 = split_address(rows2, \"家庭地址\", \"Province\", \"City\", \"District\")\nrows = merge([rows1, rows2])\nrows = dedupe(rows, [\"Emp_ID\"])\nresult = select_columns(rows, [\"Emp_ID\", \"Emp_Name\", \"JoinDate\", \"Mobile\", \"Amount\", \"Province\", \"City\", \"District\"])",
+        "schema": {
+          "columns": [
+            {
+              "name": "Emp_ID",
+              "type": "text",
+              "required": true,
+              "pattern": "digits"
+            },
+            {
+              "name": "Emp_Name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "JoinDate",
+              "type": "date",
+              "required": true,
+              "format": "%Y%m%d"
+            },
+            {
+              "name": "Mobile",
+              "type": "text",
+              "required": true,
+              "pattern": "phone"
+            },
+            {
+              "name": "Amount",
+              "type": "decimal",
+              "required": true,
+              "min": "0"
+            },
+            {
+              "name": "Province",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "City",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "District",
+              "type": "text",
+              "required": true
+            }
+          ],
+          "unique": [
+            "Emp_ID"
+          ]
+        },
+        "questions": [],
+        "warnings": [
+          "dedupe 仅去除完全相同的记录；同一 Emp_ID 但内容冲突的记录会保留，需人工处理。",
+          "手机号仅做连字符和空格清理，不推断或补全；不符合 11 位手机号约束的值将作为异常暂停导出。",
+          "地址仅拆分明确行政后缀，缺失行政区划保留为异常并人工处理。",
+          "金额小于 0 的行已按业务口径剔除。"
+        ],
+        "mode": "model",
+        "model": "deepseek-flash",
+        "response_id": "4559c595-805e-409c-a75c-0778c27a13ca",
+        "usage": {
+          "prompt_tokens": 1458,
+          "completion_tokens": 834,
+          "total_tokens": 2292,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 818
+        },
+        "share_samples": false
+      },
+      "evidence": {
+        "output_rows": 5,
+        "issues_before": 1,
+        "issues_after": 0,
+        "removal_events": 2,
+        "first_row": {
+          "Emp_ID": "0001",
+          "JoinDate": "20260115",
+          "Amount": "1250.50",
+          "Province": "浙江省",
+          "City": "杭州市",
+          "District": "西湖区"
+        },
+        "formats": {
+          "xlsx": {
+            "readback_verified": true,
+            "bytes": 5405
+          },
+          "xls": {
+            "readback_verified": true,
+            "bytes": 5632
+          },
+          "csv": {
+            "readback_verified": true,
+            "bytes": 357
+          }
+        },
+        "amount_perturbation_verified": "1250.50 → 98.25"
+      }
+    },
+    {
+      "case": "变化表头动态规划",
+      "status": "passed",
+      "source_headers": {
+        "source1": [
+          "employee_ref_Q7",
+          "person_label_P8",
+          "start_date_Z6",
+          "cellphone_N5",
+          "reimbursement_X4",
+          "residence_L3"
+        ],
+        "source2": [
+          "staff_ref_U2",
+          "name_label_V3",
+          "hire_date_W4",
+          "phone_contact_X5",
+          "expense_amount_Y6",
+          "postal_address_Z7"
+        ]
+      },
+      "plan": {
+        "summary": "分别读取 source1/source2，映射到目标列并保留工号为文本；清除姓名两端空白，去除手机号中的连字符和空格；入职日期统一转为 YYYYMMDD；金额转为 decimal 并剔除小于 0 的行；地址拆分为省市区；合并后按 Emp_ID 去重（仅完全一致记录去重，冲突保留待人工）。异常值不猜测，交由类型校验与人工处理。",
+        "code": "rows1 = table(\"source1\")\nrows1 = map_fields(rows1, {\"Emp_ID\":\"employee_ref_Q7\", \"Emp_Name\":\"person_label_P8\", \"JoinDate\":\"start_date_Z6\", \"Mobile\":\"cellphone_N5\", \"Amount\":\"reimbursement_X4\", \"Province\":\"residence_L3\"})\nrows1 = trim(rows1, [\"Emp_Name\"])\nrows1 = replace_text(rows1, \"Mobile\", {\"-\":\"\", \" \":\"\"})\nrows1 = cast(rows1, \"Emp_ID\", \"text\")\nrows1 = cast(rows1, \"JoinDate\", \"date\", format=\"%Y%m%d\")\nrows1 = cast(rows1, \"Amount\", \"decimal\")\nrows1 = filter_rows(rows1, \"Amount\", \"ge\", 0, True)\nrows1 = split_address(rows1, \"Province\", \"Province\", \"City\", \"District\")\nrows2 = table(\"source2\")\nrows2 = map_fields(rows2, {\"Emp_ID\":\"staff_ref_U2\", \"Emp_Name\":\"name_label_V3\", \"JoinDate\":\"hire_date_W4\", \"Mobile\":\"phone_contact_X5\", \"Amount\":\"expense_amount_Y6\", \"Province\":\"postal_address_Z7\"})\nrows2 = trim(rows2, [\"Emp_Name\"])\nrows2 = replace_text(rows2, \"Mobile\", {\"-\":\"\", \" \":\"\"})\nrows2 = cast(rows2, \"Emp_ID\", \"text\")\nrows2 = cast(rows2, \"JoinDate\", \"date\", format=\"%Y%m%d\")\nrows2 = cast(rows2, \"Amount\", \"decimal\")\nrows2 = filter_rows(rows2, \"Amount\", \"ge\", 0, True)\nrows2 = split_address(rows2, \"Province\", \"Province\", \"City\", \"District\")\nrows = merge([rows1, rows2])\nrows = dedupe(rows, [\"Emp_ID\"])\nresult = select_columns(rows, [\"Emp_ID\", \"Emp_Name\", \"JoinDate\", \"Mobile\", \"Amount\", \"Province\", \"City\", \"District\"])",
+        "schema": {
+          "columns": [
+            {
+              "name": "Emp_ID",
+              "type": "text",
+              "required": true,
+              "pattern": "digits"
+            },
+            {
+              "name": "Emp_Name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "JoinDate",
+              "type": "date",
+              "required": true,
+              "format": "%Y%m%d"
+            },
+            {
+              "name": "Mobile",
+              "type": "text",
+              "required": true,
+              "pattern": "phone"
+            },
+            {
+              "name": "Amount",
+              "type": "decimal",
+              "required": true,
+              "min": "0"
+            },
+            {
+              "name": "Province",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "City",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "District",
+              "type": "text",
+              "required": true
+            }
+          ],
+          "unique": [
+            "Emp_ID"
+          ]
+        },
+        "questions": [],
+        "warnings": [
+          "dedupe 仅去除完全一致记录；同工号但内容冲突的记录会保留，需人工处理。",
+          "手机号仅做字面去除连字符和空格，不推断或补全；不符合 11 位手机号约束的值将作为异常暂停导出。",
+          "地址仅按明确行政后缀拆分，缺失行政区划保留为空/异常，不猜测。",
+          "金额小于 0 的行已按指令剔除；非法数值保留为异常。"
+        ],
+        "mode": "model",
+        "model": "deepseek-flash",
+        "response_id": "d39d1476-008d-4df0-b950-d151e2214bb3",
+        "usage": {
+          "prompt_tokens": 1516,
+          "completion_tokens": 867,
+          "total_tokens": 2383,
+          "prompt_tokens_details": {
+            "cached_tokens": 768
+          },
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 748
+        },
+        "share_samples": false
+      },
+      "evidence": {
+        "output_rows": 5,
+        "issues_before": 1,
+        "issues_after": 0,
+        "removal_events": 2,
+        "first_row": {
+          "Emp_ID": "0001",
+          "JoinDate": "20260115",
+          "Amount": "1250.50",
+          "Province": "浙江省",
+          "City": "杭州市",
+          "District": "西湖区"
+        },
+        "formats": {
+          "xlsx": {
+            "readback_verified": true,
+            "bytes": 5405
+          },
+          "xls": {
+            "readback_verified": true,
+            "bytes": 5632
+          },
+          "csv": {
+            "readback_verified": true,
+            "bytes": 357
+          }
+        },
+        "amount_perturbation_verified": "1250.50 → 98.25"
+      }
+    }
+  ],
+  "status": "verified"
+}

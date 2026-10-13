@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>表桥 · 跨系统表格转换智能体</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/workbench.css"></head>
+<body>
+<header><a class="brand" href="/">表桥<span>TableBridge</span></a><span class="header-label">跨系统表格转换智能体</span><span id="model-status">连接本机服务…</span></header>
+<div class="layout"><aside>
+  <div class="aside-title">转换工作台</div>
+  <a class="nav-current" href="/" aria-current="page">通用表格转换</a><a class="nav-link" href="/legacy">请假结算 / 加班筛选</a>
+  <button id="sample" class="secondary full" disabled>载入双系统演示</button>
+  <p class="aside-note">两份模拟源表，一个目标格式。包含负金额、重复记录和待核实手机号。</p>
+  <ol class="steps"><li><b>01</b> 接入表格</li><li><b>02</b> 规划转换</li><li><b>03</b> 核查与处理异常</li><li><b>04</b> 导出与保存流程</li></ol>
+  <div class="templates"><label for="template-select">已保存的转换流程</label><select id="template-select"><option value="">尚无已保存流程</option></select><button id="reuse" class="secondary full" disabled>复用选中流程</button></div>
+  <div class="aside-bottom">原始文件保持不变<br>默认发送指令、表头与类型统计<br>每次导出保存独立审计快照</div>
+</aside>
+<main>
+  <div class="work-intro"><p class="eyebrow">ERP / CRM / OA / HR</p><h1>把不同系统的表格，转成同一种格式</h1><p>说明处理要求，核查转换前后数据，导出目标系统需要的文件。</p></div>
+  <div id="status" role="status" aria-live="polite"></div>
+  <section aria-labelledby="files-title"><div class="section-head"><h2 id="files-title"><span class="step-number">01</span> 源表与目标格式</h2><span>XLSX / XLS / CSV / TSV</span></div>
+    <div class="uploads">
+      <div class="upload"><label for="source1"><b>源表 A · 必选</b></label><input type="file" id="source1" accept=".xlsx,.xls,.csv,.tsv"><label class="header-row" for="header-source1">表头行<input id="header-source1" type="number" min="1" max="20" value="1"></label><div class="file-info" id="info-source1">尚未上传源表</div></div>
+      <div class="upload"><label for="source2"><b>源表 B · 合并或关联</b></label><input type="file" id="source2" accept=".xlsx,.xls,.csv,.tsv"><label class="header-row" for="header-source2">表头行<input id="header-source2" type="number" min="1" max="20" value="1"></label><div class="file-info" id="info-source2">可选</div><button id="remove-source2" class="text-button" hidden>移除源表 B</button></div>
+      <div class="upload"><label for="target"><b>目标导入模板 · 必选</b></label><input type="file" id="target" accept=".xlsx,.xls,.csv,.tsv"><label class="header-row" for="header-target">表头行<input id="header-target" type="number" min="1" max="20" value="1"></label><div class="file-info" id="info-target">上传只含表头的空白模板</div></div>
+    </div>
+    <details id="source-details"><summary>查看源表预览与目标字段</summary><div id="sources-preview"><p class="note">上传文件后显示实际字段和前 6 行。</p></div></details>
+  </section>
+  <section aria-labelledby="plan-title"><h2 id="plan-title"><span class="step-number">02</span> 描述转换要求</h2>
+    <label class="sr-only" for="prompt">转换要求</label><textarea id="prompt" rows="4" placeholder="例如：合并两份员工表，保留工号前导零，去除负金额，清洗手机号码，把入职日期改为 YYYYMMDD，按工号去重，将地址拆为省市区。"></textarea>
+    <div class="prompt-actions"><label class="checkbox"><input id="share-samples" type="checkbox">允许模型读取每份源表前 3 行样本</label><button id="generate" class="primary" disabled>用模型生成转换流程</button></div>
+    <p class="note">默认只发送指令、表头和目标约束。样本可能包含员工个人信息，请按需选择。</p>
+    <div id="plan-summary" class="plan-summary" hidden></div>
+    <details id="schema-details"><summary>目标列顺序与类型约束</summary><p class="note">目标列按模板顺序输出。确认工号为文本、日期格式和必填项；模型建议也需要核对。</p><div id="schema-editor"><p class="note">先上传目标模板。</p></div><details class="advanced"><summary>完整约束 JSON · 枚举与组合唯一键</summary><label for="schema-json" class="sr-only">完整目标约束 JSON</label><textarea id="schema-json" rows="9" spellcheck="false"></textarea><button id="apply-schema" class="secondary">应用 JSON 约束</button></details></details>
+    <details id="code-details"><summary>查看或编辑清洗流程代码</summary><p class="note">支持受限 Python 表格函数。最后给 result 赋值；函数说明见项目的 Prompt 策略文档。</p><label class="sr-only" for="code">清洗流程代码</label><textarea id="code" rows="12" spellcheck="false" placeholder='rows = table("source1")&#10;result = select_columns(rows, ["目标列"])'></textarea></details>
+    <label class="checkbox confirm"><input id="confirm" type="checkbox">已核对处理要求、字段映射和目标类型，执行并生成预览</label>
+    <div class="runbar"><span>遇到异常会暂停导出，并请求人工决策</span><button id="preview" class="primary" disabled>执行转换并预览</button></div>
+  </section>
+  <section id="review" hidden aria-labelledby="review-title"><div class="section-head"><h2 id="review-title"><span class="step-number">03</span> 转换前后核查</h2><span id="agent-state"></span></div>
+    <div class="metrics" id="metrics"></div>
+    <div id="comparison" class="comparison"></div><p class="note">源表显示前 6 行，转换结果显示前 100 行；完整记录和源行号保存于审计文件。</p>
+    <div id="issues-panel" hidden><h3>需要你的决策</h3><p class="note">只填写核实后的值，或明确跳过整行。提交后会重新验证所有约束。</p><div id="issues" class="table-wrap"></div><button id="resolve" class="secondary">提交所选决策并重新校验</button></div>
+    <details><summary id="events-summary">查看筛选与去重记录</summary><div id="events" class="table-wrap"></div></details>
+  </section>
+  <section id="export-section" hidden aria-labelledby="export-title"><h2 id="export-title"><span class="step-number">04</span> 导出与复用</h2>
+    <div class="export-controls"><label for="format">目标文件格式<select id="format"><option value="xlsx">Excel 工作簿 · XLSX</option><option value="xls">Excel 97–2003 · XLS</option><option value="csv">CSV 文本</option></select></label><label id="encoding-label" for="encoding" hidden>CSV 编码<select id="encoding"><option value="utf-8-sig">UTF-8（含 BOM）</option><option value="utf-8">UTF-8（无 BOM）</option><option value="gb18030">GB18030</option><option value="gbk">GBK</option></select></label><button id="export" class="primary" disabled>生成可下载文件</button></div>
+    <p id="export-note" class="note">处理完全部异常后才能导出。文件会回读验证列序、行数和内容。</p><div id="downloads" class="downloads"></div>
+    <div id="save-flow" hidden><label for="template-name">保存本次成功的转换流程</label><div class="save-controls"><input id="template-name" maxlength="80" placeholder="例如：OA + ERP 员工资料 → 旧版 HR"><button id="save" class="secondary">保存为可复用模板</button></div><p class="note">保存转换逻辑与类型约束。一次性的人工改单不会写成模板常量；新文件会重新计算、重新校验。</p></div>
+  </section>
+</main></div><script src="/workbench.js"></script>
+</body></html>

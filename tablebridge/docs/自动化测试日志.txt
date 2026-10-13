@@ -1,0 +1,42 @@
+test_cross_origin_rejected (test_bridge.ApiTests.test_cross_origin_rejected) ... ok
+test_no_confirmation_no_export (test_bridge.ApiTests.test_no_confirmation_no_export) ... ok
+test_roundtrip_download_and_immutable_history (test_bridge.ApiTests.test_roundtrip_download_and_immutable_history) ... ok
+test_ambiguous_natural_language (test_bridge.BridgeTests.test_ambiguous_natural_language) ... ok
+test_bad_employee_does_not_consume_balance (test_bridge.BridgeTests.test_bad_employee_does_not_consume_balance) ... ok
+test_bad_plan_operators_rejected (test_bridge.BridgeTests.test_bad_plan_operators_rejected) ... ok
+test_csv_formula_protection (test_bridge.BridgeTests.test_csv_formula_protection) ... ok
+test_date_formats_and_invalid (test_bridge.BridgeTests.test_date_formats_and_invalid) ... ok
+test_decimal_not_binary (test_bridge.BridgeTests.test_decimal_not_binary) ... ok
+test_duplicate_conflicts_all_isolated (test_bridge.BridgeTests.test_duplicate_conflicts_all_isolated) ... ok
+test_identity_conflict (test_bridge.BridgeTests.test_identity_conflict) ... ok
+test_independent_excel_formula_oracle (test_bridge.BridgeTests.test_independent_excel_formula_oracle) ... ok
+test_local_natural_language (test_bridge.BridgeTests.test_local_natural_language) ... ok
+test_main_annual_personal (test_bridge.BridgeTests.test_main_annual_personal) ... ok
+test_missing_balance_never_zero_fallback (test_bridge.BridgeTests.test_missing_balance_never_zero_fallback) ... ok
+test_missing_mapping_rejected (test_bridge.BridgeTests.test_missing_mapping_rejected) ... ok
+test_number_noise (test_bridge.BridgeTests.test_number_noise) ... ok
+test_numeric_id_blocked (test_bridge.BridgeTests.test_numeric_id_blocked) ... ok
+test_order_independent_input (test_bridge.BridgeTests.test_order_independent_input) ... ok
+test_overtime_department_and_dates (test_bridge.BridgeTests.test_overtime_department_and_dates) ... ok
+test_partial_period_isolated (test_bridge.BridgeTests.test_partial_period_isolated) ... ok
+test_perturbed_file_changes_output (test_bridge.BridgeTests.test_perturbed_file_changes_output) ... ok
+test_row_accounting (test_bridge.BridgeTests.test_row_accounting) ... ok
+test_source_formula_isolation (test_bridge.BridgeTests.test_source_formula_isolation) ... ok
+test_table_input_contract (test_bridge.BridgeTests.test_table_input_contract) ... ok
+test_template_unknown_column_requires_constant (test_bridge.BridgeTests.test_template_unknown_column_requires_constant) ... ok
+test_template_with_data_rejected (test_bridge.BridgeTests.test_template_with_data_rejected) ... ok
+test_unapproved_and_outside_date_excluded (test_bridge.BridgeTests.test_unapproved_and_outside_date_excluded) ... ok
+test_unconfirmed_rules_rejected (test_bridge.BridgeTests.test_unconfirmed_rules_rejected) ... ok
+test_unknown_header_can_be_configured (test_bridge.BridgeTests.test_unknown_header_can_be_configured) ... ok
+test_unknown_status_blocks_employee (test_bridge.BridgeTests.test_unknown_status_blocks_employee) ... ok
+test_xlsx_template_text_ids_numbers_dates (test_bridge.BridgeTests.test_xlsx_template_text_ids_numbers_dates) ... ok
+test_model_http_failure_no_local_fallback (test_bridge.PlannerTests.test_model_http_failure_no_local_fallback) ... Model planning failed: HTTP 401
+ok
+test_model_invalid_json_no_execution (test_bridge.PlannerTests.test_model_invalid_json_no_execution) ... Model planning failed: JSONDecodeError
+ok
+test_model_request_contains_only_instruction_and_headers (test_bridge.PlannerTests.test_model_request_contains_only_instruction_and_headers) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 1.928s
+
+OK

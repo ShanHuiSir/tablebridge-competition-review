@@ -1,0 +1,459 @@
+{
+  "plan": {
+    "operation": "leave",
+    "department": "",
+    "start": "2026-09-01",
+    "end": "2026-09-30",
+    "eligible_types": [
+      "年假",
+      "事假"
+    ],
+    "approved_statuses": [
+      "已通过",
+      "审批通过",
+      "已批准",
+      "approved"
+    ],
+    "excluded_statuses": [
+      "待审批",
+      "已驳回",
+      "已撤销",
+      "pending",
+      "rejected"
+    ],
+    "annual_code": "年假",
+    "personal_code": "事假",
+    "precision": 2,
+    "assumption_confirmed": true
+  },
+  "outputs": [
+    {
+      "employee_id": "0001",
+      "name": "陈曦",
+      "department": "研发部",
+      "start_date": "2026-09-02",
+      "end_date": "2026-09-02",
+      "source_id": "L001",
+      "leave_type": "年假",
+      "days": "2.5"
+    },
+    {
+      "employee_id": "0001",
+      "name": "陈曦",
+      "department": "研发部",
+      "start_date": "2026-09-05",
+      "end_date": "2026-09-05",
+      "source_id": "L002",
+      "leave_type": "年假",
+      "days": "0.50"
+    },
+    {
+      "employee_id": "0001",
+      "name": "陈曦",
+      "department": "研发部",
+      "start_date": "2026-09-05",
+      "end_date": "2026-09-05",
+      "source_id": "L002",
+      "leave_type": "事假",
+      "days": "1.50"
+    },
+    {
+      "employee_id": "0002",
+      "name": "林舟",
+      "department": "财务部",
+      "start_date": "2026-09-06",
+      "end_date": "2026-09-06",
+      "source_id": "L003",
+      "leave_type": "事假",
+      "days": "1.25"
+    },
+    {
+      "employee_id": "0003",
+      "name": "周宁",
+      "department": "研发部",
+      "start_date": "2026-09-07",
+      "end_date": "2026-09-07",
+      "source_id": "L004",
+      "leave_type": "年假",
+      "days": "0.10"
+    },
+    {
+      "employee_id": "0003",
+      "name": "周宁",
+      "department": "研发部",
+      "start_date": "2026-09-08",
+      "end_date": "2026-09-08",
+      "source_id": "L005",
+      "leave_type": "年假",
+      "days": "0.20"
+    }
+  ],
+  "ledger": [
+    {
+      "employee_id": "0001",
+      "record_id": "L001",
+      "source_row": 2,
+      "balance_source_row": 2,
+      "days": "2.5",
+      "before": "3.00",
+      "annual": "2.5",
+      "personal": "0.0",
+      "after": "0.50"
+    },
+    {
+      "employee_id": "0001",
+      "record_id": "L002",
+      "source_row": 3,
+      "balance_source_row": 2,
+      "days": "2.00",
+      "before": "0.50",
+      "annual": "0.50",
+      "personal": "1.50",
+      "after": "0.00"
+    },
+    {
+      "employee_id": "0002",
+      "record_id": "L003",
+      "source_row": 4,
+      "balance_source_row": 3,
+      "days": "1.25",
+      "before": "0",
+      "annual": "0",
+      "personal": "1.25",
+      "after": "0"
+    },
+    {
+      "employee_id": "0003",
+      "record_id": "L004",
+      "source_row": 5,
+      "balance_source_row": 4,
+      "days": "0.10",
+      "before": "0.30",
+      "annual": "0.10",
+      "personal": "0.00",
+      "after": "0.20"
+    },
+    {
+      "employee_id": "0003",
+      "record_id": "L005",
+      "source_row": 6,
+      "balance_source_row": 4,
+      "days": "0.20",
+      "before": "0.20",
+      "annual": "0.20",
+      "personal": "0.00",
+      "after": "0.00"
+    }
+  ],
+  "errors": [
+    {
+      "source": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "row": 8,
+      "employee_id": "0004",
+      "code": "INVALID_ROW",
+      "reason": "数值须为非负十进制，最多两位小数，不接受单位、公式或科学计数法",
+      "values": {
+        "请假单号": "L006",
+        "人员编码": "0004",
+        "员工姓名": "叶青",
+        "所属部门": "生产部",
+        "请假开始": "2026-09-09",
+        "请假结束": "2026-09-09",
+        "请假时长(天)": "两天",
+        "请假类别": "年假",
+        "审核结果": "已通过"
+      }
+    },
+    {
+      "source": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "row": 11,
+      "employee_id": "",
+      "code": "INVALID_ROW",
+      "reason": "缺少工号",
+      "values": {
+        "请假单号": "L009",
+        "人员编码": "",
+        "员工姓名": "未匹配人员",
+        "所属部门": "运营部",
+        "请假开始": "2026-09-12",
+        "请假结束": "2026-09-12",
+        "请假时长(天)": "1",
+        "请假类别": "年假",
+        "审核结果": "已通过"
+      }
+    },
+    {
+      "source": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "row": 15,
+      "employee_id": "0006",
+      "code": "DUPLICATE_CONFLICT",
+      "reason": "同一工号余额或同一单据编号存在不同内容",
+      "values": {
+        "请假单号": "L012",
+        "人员编码": "0006",
+        "员工姓名": "宋晓",
+        "所属部门": "销售部",
+        "请假开始": "2026-09-14",
+        "请假结束": "2026-09-14",
+        "请假时长(天)": "1",
+        "请假类别": "年假",
+        "审核结果": "已通过"
+      }
+    },
+    {
+      "source": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "row": 16,
+      "employee_id": "0006",
+      "code": "DUPLICATE_CONFLICT",
+      "reason": "同一工号余额或同一单据编号存在不同内容",
+      "values": {
+        "请假单号": "L012",
+        "人员编码": "0006",
+        "员工姓名": "宋晓",
+        "所属部门": "销售部",
+        "请假开始": "2026-09-14",
+        "请假结束": "2026-09-14",
+        "请假时长(天)": "2",
+        "请假类别": "年假",
+        "审核结果": "已通过"
+      }
+    },
+    {
+      "source": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "row": 10,
+      "employee_id": "0005",
+      "code": "MISSING_BALANCE",
+      "reason": "未找到该工号的期初年假余额",
+      "values": {
+        "请假单号": "L008",
+        "人员编码": "0005",
+        "员工姓名": "夏雨",
+        "所属部门": "运营部",
+        "请假开始": "2026-09-11",
+        "请假结束": "2026-09-11",
+        "请假时长(天)": "1",
+        "请假类别": "年假",
+        "审核结果": "已通过"
+      }
+    },
+    {
+      "source": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "row": 9,
+      "employee_id": "0004",
+      "code": "EMPLOYEE_BLOCKED",
+      "reason": "该工号存在异常，隔离其全部候选记录以免余额结算失真",
+      "values": {
+        "请假单号": "L007",
+        "人员编码": "0004",
+        "员工姓名": "叶青",
+        "所属部门": "生产部",
+        "请假开始": "2026-09-10",
+        "请假结束": "2026-09-10",
+        "请假时长(天)": "1",
+        "请假类别": "年假",
+        "审核结果": "已通过"
+      }
+    },
+    {
+      "source": "HR_年假余额_模拟.csv",
+      "sheet": "CSV",
+      "row": 5,
+      "employee_id": "0004",
+      "code": "EMPLOYEE_BLOCKED",
+      "reason": "关联请假数据存在异常，余额记录仅保留复核",
+      "values": {
+        "工号": "0004",
+        "姓名": "叶青",
+        "可用年假(天)": "4"
+      }
+    },
+    {
+      "source": "HR_年假余额_模拟.csv",
+      "sheet": "CSV",
+      "row": 6,
+      "employee_id": "0006",
+      "code": "EMPLOYEE_BLOCKED",
+      "reason": "关联请假数据存在异常，余额记录仅保留复核",
+      "values": {
+        "工号": "0006",
+        "姓名": "宋晓",
+        "可用年假(天)": "5"
+      }
+    }
+  ],
+  "events": [
+    {
+      "source": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "row": 7,
+      "employee_id": "0003",
+      "code": "DUPLICATE_IDENTICAL",
+      "reason": "重复记录已去重",
+      "values": {
+        "请假单号": "L005",
+        "人员编码": "0003",
+        "员工姓名": "周宁",
+        "所属部门": "研发部",
+        "请假开始": "2026-09-08",
+        "请假结束": "2026-09-08",
+        "请假时长(天)": "0.20",
+        "请假类别": "年假",
+        "审核结果": "已通过"
+      }
+    },
+    {
+      "source": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "row": 12,
+      "employee_id": "0002",
+      "code": "NOT_APPROVED",
+      "reason": "明确未通过的记录已排除",
+      "values": {
+        "请假单号": "L010",
+        "人员编码": "0002",
+        "员工姓名": "林舟",
+        "所属部门": "财务部",
+        "请假开始": "2026-09-13",
+        "请假结束": "2026-09-13",
+        "请假时长(天)": "1",
+        "请假类别": "年假",
+        "审核结果": "待审批"
+      }
+    },
+    {
+      "source": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "row": 13,
+      "employee_id": "0002",
+      "code": "FILTER_DATE",
+      "reason": "不在筛选日期范围内",
+      "values": {
+        "请假单号": "L011",
+        "人员编码": "0002",
+        "员工姓名": "林舟",
+        "所属部门": "财务部",
+        "请假开始": "2026-08-15",
+        "请假结束": "2026-08-15",
+        "请假时长(天)": "1",
+        "请假类别": "年假",
+        "审核结果": "已通过"
+      }
+    }
+  ],
+  "counts": {
+    "balance": {
+      "total": 5,
+      "blank": 0,
+      "error": 2,
+      "skip": 0,
+      "dedup": 0,
+      "valid": 3
+    },
+    "leave": {
+      "total": 15,
+      "blank": 1,
+      "error": 6,
+      "skip": 2,
+      "dedup": 1,
+      "valid": 5
+    }
+  },
+  "totals": {
+    "days": "6.05",
+    "annual": "3.30",
+    "personal": "2.75"
+  },
+  "balances": {
+    "0001": "0.00",
+    "0002": "0",
+    "0003": "0.00"
+  },
+  "inputs": {
+    "leave": {
+      "filename": "OA_请假_模拟.csv",
+      "sheet": "CSV",
+      "sha256": "837778c94b02d5f1d8e9b1df86778b31f52b428b24e9063d3b185181e2dcdba7",
+      "header_row": 1
+    },
+    "balance": {
+      "filename": "HR_年假余额_模拟.csv",
+      "sheet": "CSV",
+      "sha256": "c17d0677ec521f2712502bce6c778572a334d835078b3419f1522113d7c1ad80",
+      "header_row": 1
+    }
+  },
+  "mappings": {
+    "leave": {
+      "record_id": "请假单号",
+      "employee_id": "人员编码",
+      "name": "员工姓名",
+      "department": "所属部门",
+      "start_date": "请假开始",
+      "end_date": "请假结束",
+      "days": "请假时长(天)",
+      "leave_type": "请假类别",
+      "status": "审核结果"
+    },
+    "balance": {
+      "employee_id": "工号",
+      "name": "姓名",
+      "balance": "可用年假(天)"
+    }
+  },
+  "run_id": "99b11a7c172e4e37bbaf845d8fb736cb",
+  "created_at": "2026-10-12T01:01:16.356701+00:00",
+  "template": {
+    "filename": "HR_请假导入模板_模拟.xlsx",
+    "sheet": "请假导入",
+    "headers": [
+      "工号",
+      "姓名",
+      "部门",
+      "开始日期",
+      "结束日期",
+      "假期类型",
+      "天数",
+      "来源单据"
+    ],
+    "header_row": 1,
+    "sha256": "3e356fd17be6dc33acf41d4748df449d4ac66312fd8daf73bbea9d1844bf38db",
+    "row_count": 0
+  },
+  "target_mapping": {
+    "工号": {
+      "field": "employee_id"
+    },
+    "姓名": {
+      "field": "name"
+    },
+    "部门": {
+      "field": "department"
+    },
+    "开始日期": {
+      "field": "start_date"
+    },
+    "结束日期": {
+      "field": "end_date"
+    },
+    "假期类型": {
+      "field": "leave_type"
+    },
+    "天数": {
+      "field": "days"
+    },
+    "来源单据": {
+      "field": "source_id"
+    }
+  },
+  "planning": {
+    "mode": "本地指令解析",
+    "usage": null
+  },
+  "import_sha256": "f3fcbf7cf8bf8b9b43a19247e517ca82ed6c0a0ef93bcc8f6f0e21d9e769a8ad"
+}

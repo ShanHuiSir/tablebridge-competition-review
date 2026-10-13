@@ -1,0 +1,42 @@
+{
+  "archive_date": "2026-10-13",
+  "scope": "仅表桥工程与参赛材料",
+  "visibility_intended": "private",
+  "source_snapshot_sha256": "1242f1ef0e2e2682a10b6ec517fb7610bafd87bc2487499b94ae997f19b41220",
+  "source_files_match_snapshot": true,
+  "credential_scan": {
+    "checked_files_and_nested_members": 488,
+    "matches": 0,
+    "excluded": [
+      ".env",
+      "data/",
+      ".venv/",
+      ".work/",
+      "__pycache__/"
+    ]
+  },
+  "github_size_limit_check": {
+    "maximum_file_bytes": 11479859,
+    "files_over_100_MiB": 0
+  },
+  "automated_tests": {
+    "command": "python -m unittest discover -s tests -v",
+    "python": "3.12",
+    "platform": "macOS",
+    "count": 62,
+    "seconds": 3.215,
+    "result": "OK",
+    "real_model_called": false
+  },
+  "real_model_evidence": "tablebridge/docs/通用Agent模型实测.json",
+  "unverified": [
+    "Windows 实机与 EXE 构建",
+    "正式 HR/ERP 导入",
+    "比赛报名与平台提交"
+  ],
+  "artifact_changes": [
+    "同步视频和申报底稿当前文件名",
+    "更新引用与文件校验",
+    "重新生成材料整包；视频与申报正文不变"
+  ]
+}

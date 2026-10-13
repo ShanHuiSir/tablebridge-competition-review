@@ -1,0 +1,225 @@
+{
+  "plan": {
+    "operation": "overtime",
+    "department": "研发部",
+    "start": "2026-09-01",
+    "end": "2026-09-30",
+    "eligible_types": [
+      "年假",
+      "事假"
+    ],
+    "approved_statuses": [
+      "已通过",
+      "审批通过",
+      "已批准",
+      "approved"
+    ],
+    "excluded_statuses": [
+      "待审批",
+      "已驳回",
+      "已撤销",
+      "pending",
+      "rejected"
+    ],
+    "annual_code": "年假",
+    "personal_code": "事假",
+    "precision": 2,
+    "assumption_confirmed": true
+  },
+  "outputs": [
+    {
+      "employee_id": "0001",
+      "name": "陈曦",
+      "department": "研发部",
+      "date": "2026-09-03",
+      "hours": "2.50",
+      "source_id": "O001"
+    },
+    {
+      "employee_id": "0003",
+      "name": "周宁",
+      "department": "研发部",
+      "date": "2026-09-06",
+      "hours": "1.25",
+      "source_id": "O002"
+    }
+  ],
+  "ledger": [
+    {
+      "employee_id": "0001",
+      "record_id": "O001",
+      "source_row": 2,
+      "hours": "2.50"
+    },
+    {
+      "employee_id": "0003",
+      "record_id": "O002",
+      "source_row": 3,
+      "hours": "1.25"
+    }
+  ],
+  "errors": [
+    {
+      "source": "ERP_加班_模拟.csv",
+      "sheet": "CSV",
+      "row": 7,
+      "employee_id": "0004",
+      "code": "INVALID_ROW",
+      "reason": "单日加班超过 24 小时",
+      "values": {
+        "加班单号": "O006",
+        "职员代码": "0004",
+        "人员姓名": "叶青",
+        "组织名称": "研发部",
+        "工作日期": "2026-09-09",
+        "加班时长(小时)": "25",
+        "状态": "已通过"
+      }
+    }
+  ],
+  "events": [
+    {
+      "source": "ERP_加班_模拟.csv",
+      "sheet": "CSV",
+      "row": 8,
+      "employee_id": "0003",
+      "code": "DUPLICATE_IDENTICAL",
+      "reason": "重复记录已去重",
+      "values": {
+        "加班单号": "O002",
+        "职员代码": "0003",
+        "人员姓名": "周宁",
+        "组织名称": "研发部",
+        "工作日期": "2026-09-06",
+        "加班时长(小时)": "1.25",
+        "状态": "已通过"
+      }
+    },
+    {
+      "source": "ERP_加班_模拟.csv",
+      "sheet": "CSV",
+      "row": 4,
+      "employee_id": "0002",
+      "code": "FILTER_DEPARTMENT",
+      "reason": "不属于筛选部门",
+      "values": {
+        "加班单号": "O003",
+        "职员代码": "0002",
+        "人员姓名": "林舟",
+        "组织名称": "财务部",
+        "工作日期": "2026-09-06",
+        "加班时长(小时)": "3",
+        "状态": "已通过"
+      }
+    },
+    {
+      "source": "ERP_加班_模拟.csv",
+      "sheet": "CSV",
+      "row": 5,
+      "employee_id": "0001",
+      "code": "FILTER_DATE",
+      "reason": "不在筛选日期范围内",
+      "values": {
+        "加班单号": "O004",
+        "职员代码": "0001",
+        "人员姓名": "陈曦",
+        "组织名称": "研发部",
+        "工作日期": "2026-08-01",
+        "加班时长(小时)": "2",
+        "状态": "已通过"
+      }
+    },
+    {
+      "source": "ERP_加班_模拟.csv",
+      "sheet": "CSV",
+      "row": 6,
+      "employee_id": "0001",
+      "code": "NOT_APPROVED",
+      "reason": "明确未通过的记录已排除",
+      "values": {
+        "加班单号": "O005",
+        "职员代码": "0001",
+        "人员姓名": "陈曦",
+        "组织名称": "研发部",
+        "工作日期": "2026-09-08",
+        "加班时长(小时)": "2",
+        "状态": "待审批"
+      }
+    }
+  ],
+  "counts": {
+    "overtime": {
+      "total": 7,
+      "blank": 0,
+      "error": 1,
+      "skip": 3,
+      "dedup": 1,
+      "valid": 2
+    }
+  },
+  "totals": {
+    "hours": "3.75"
+  },
+  "balances": {},
+  "inputs": {
+    "overtime": {
+      "filename": "ERP_加班_模拟.csv",
+      "sheet": "CSV",
+      "sha256": "360f667d79ac84efa02c660da8dbb43652bd5ee76bc4752885c54512058f322e",
+      "header_row": 1
+    }
+  },
+  "mappings": {
+    "overtime": {
+      "record_id": "加班单号",
+      "employee_id": "职员代码",
+      "name": "人员姓名",
+      "department": "组织名称",
+      "date": "工作日期",
+      "hours": "加班时长(小时)",
+      "status": "状态"
+    }
+  },
+  "run_id": "2d36d090d3f1446396ca009b98d331d1",
+  "created_at": "2026-10-12T01:06:06.341687+00:00",
+  "template": {
+    "filename": "HR_加班导入模板_模拟.xlsx",
+    "sheet": "加班导入",
+    "headers": [
+      "工号",
+      "姓名",
+      "部门",
+      "日期",
+      "小时数",
+      "来源单据"
+    ],
+    "header_row": 1,
+    "sha256": "8b0e5257bfc68e643885103e8147e0fe4970dc1da169af1f93b9edb60da34a42",
+    "row_count": 0
+  },
+  "target_mapping": {
+    "工号": {
+      "field": "employee_id"
+    },
+    "姓名": {
+      "field": "name"
+    },
+    "部门": {
+      "field": "department"
+    },
+    "日期": {
+      "field": "date"
+    },
+    "小时数": {
+      "field": "hours"
+    },
+    "来源单据": {
+      "field": "source_id"
+    }
+  },
+  "planning": {
+    "mode": "本地指令解析",
+    "usage": null
+  },
+  "import_sha256": "edbb8eaeff0dcb045ffbbca513d10cbca0e55e3fb872470abe9a9d15e1239d39"
+}

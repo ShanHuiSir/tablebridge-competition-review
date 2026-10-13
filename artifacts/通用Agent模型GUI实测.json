@@ -1,0 +1,519 @@
+{
+  "run_id": "bdbccdc0a5aa4973a6b886f940e55dea",
+  "created_at": "2026-10-12T14:43:17.467239+00:00",
+  "agent_status": "completed",
+  "plan": {
+    "summary": "合并 source1 与 source2 到目标 HR 模板：统一字段名，清除姓名两端空白，去除手机号中的连字符和空格，入职日期统一转为 YYYYMMDD，剔除金额小于 0 的行，按工号去重（仅完全一致记录去重，冲突保留待人工），地址拆分为省市区。工号保持文本以保留前导零。异常值（非法手机号、无法解析日期、缺失行政区划、金额非法）保留并标记异常，交由类型校验与人工决策，不做猜测。",
+    "code": "rows1 = table(\"source1\")\nrows2 = table(\"source2\")\nrows1 = map_fields(rows1, {\"Emp_ID\":\"员工编号\", \"Emp_Name\":\"员工姓名\", \"JoinDate\":\"入职日期\", \"Mobile\":\"联系电话\", \"Amount\":\"报销金额\", \"Address\":\"家庭地址\"})\nrows2 = map_fields(rows2, {\"Emp_ID\":\"person_code\", \"Emp_Name\":\"full_name\", \"JoinDate\":\"hired_on\", \"Mobile\":\"mobile\", \"Amount\":\"claim_total\", \"Address\":\"home_address\"})\nrows = merge([rows1, rows2])\nrows = trim(rows, [\"Emp_ID\", \"Emp_Name\", \"Mobile\", \"Amount\", \"JoinDate\", \"Address\"])\nrows = replace_text(rows, \"Mobile\", {\"-\":\"\", \" \":\"\"})\nrows = cast(rows, \"JoinDate\", \"date\", format=\"%Y%m%d\")\nrows = cast(rows, \"Amount\", \"decimal\")\nrows = filter_rows(rows, \"Amount\", \"ge\", 0, True)\nrows = dedupe(rows, [\"Emp_ID\"])\nrows = split_address(rows, \"Address\", \"Province\", \"City\", \"District\")\nresult = select_columns(rows, [\"Emp_ID\", \"Emp_Name\", \"JoinDate\", \"Mobile\", \"Amount\", \"Province\", \"City\", \"District\"])",
+    "schema": {
+      "columns": [
+        {
+          "name": "Emp_ID",
+          "type": "text",
+          "required": true,
+          "pattern": "digits"
+        },
+        {
+          "name": "Emp_Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "JoinDate",
+          "type": "date",
+          "required": true,
+          "format": "%Y%m%d"
+        },
+        {
+          "name": "Mobile",
+          "type": "text",
+          "required": true,
+          "pattern": "phone"
+        },
+        {
+          "name": "Amount",
+          "type": "decimal",
+          "required": true,
+          "min": "0"
+        },
+        {
+          "name": "Province",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "City",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "District",
+          "type": "text",
+          "required": true
+        }
+      ],
+      "unique": [
+        "Emp_ID"
+      ]
+    },
+    "questions": [],
+    "warnings": [
+      "源日期含 YYYY年M月D日 格式，cast 内置解析仅支持 %Y-%m-%d、%Y%m%d、%Y/%Y/%m/%d，该格式可能无法解析，将保留为异常并暂停人工处理。",
+      "地址拆分仅识别明确省市区/直辖市后缀，缺失行政区划将保留异常并人工处理。",
+      "手机号仅去除连字符和空格，非11位或非1开头的异常值不推断，按约束暂停导出。",
+      "同工号内容冲突的记录不会被去重，将保留并请求人工处理。"
+    ],
+    "mode": "model",
+    "model": "deepseek-flash",
+    "response_id": "b177ffee-fe0e-4b3f-b585-1a1f551acc23",
+    "usage": {
+      "prompt_tokens": 1476,
+      "completion_tokens": 731,
+      "total_tokens": 2207,
+      "prompt_tokens_details": {
+        "cached_tokens": 768
+      },
+      "prompt_cache_hit_tokens": 768,
+      "prompt_cache_miss_tokens": 708
+    },
+    "share_samples": false,
+    "prompt": "将两份系统导出表合并为目标 HR 模板。保留工号前导零，清除姓名两端空格、手机号中的连字符和空格，将入职日期转为 YYYYMMDD，剔除金额小于 0 的行，按工号去重，将地址拆分为省市区。异常值暂停询问，不要猜测。 业务口径已确认：同工号且完整内容一致才去重，内容冲突保留并请求人工；异常手机号不推断，按11位手机号约束暂停导出；源日期含 YYYY/MM/DD、YYYY-MM-DD、YYYYMMDD 和 YYYY年M月D日，cast 的 date format 参数指定输出格式，内置解析支持这些输入；地址只拆明确行政后缀，缺失保留异常并人工处理。已确认的这些口径无需再次提问，其他真正不确定之处仍须提问。 目标约束：所有目标字段必填；Emp_ID 纯数字文本且唯一，Mobile 为以1开头的11位数字文本，Amount 为非负数值，JoinDate 为 YYYYMMDD 日期。"
+  },
+  "schema": {
+    "columns": [
+      {
+        "name": "Emp_ID",
+        "type": "text",
+        "required": true,
+        "pattern": "digits"
+      },
+      {
+        "name": "Emp_Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "JoinDate",
+        "type": "date",
+        "required": true,
+        "format": "%Y%m%d"
+      },
+      {
+        "name": "Mobile",
+        "type": "text",
+        "required": true,
+        "pattern": "phone"
+      },
+      {
+        "name": "Amount",
+        "type": "decimal",
+        "required": true,
+        "min": "0"
+      },
+      {
+        "name": "Province",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "City",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "District",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "unique": [
+      "Emp_ID"
+    ]
+  },
+  "fingerprint": {
+    "source1": [
+      "员工编号",
+      "员工姓名",
+      "入职日期",
+      "联系电话",
+      "报销金额",
+      "家庭地址"
+    ],
+    "source2": [
+      "person_code",
+      "full_name",
+      "hired_on",
+      "mobile",
+      "claim_total",
+      "home_address"
+    ],
+    "target": [
+      "Emp_ID",
+      "Emp_Name",
+      "JoinDate",
+      "Mobile",
+      "Amount",
+      "Province",
+      "City",
+      "District"
+    ]
+  },
+  "inputs": {
+    "source1": {
+      "filename": "系统A_员工报销.xlsx",
+      "sha256": "42dc79e5e279abfde21c8fd8cfcf3c5a94c0a47bd5c16cf2f745aa02352a290c",
+      "rows": 4
+    },
+    "source2": {
+      "filename": "系统B_员工费用.csv",
+      "sha256": "fe76114f817e2ac0396fa00d4d30de7824421db89760dabdce85310cc93d2432",
+      "rows": 3
+    },
+    "target": {
+      "filename": "目标HR_员工导入.xlsx",
+      "sha256": "f285c8900787a1ae89358c196476c958e99d08b9b84e1fb5f41e651da6d6d9d0",
+      "rows": 0
+    }
+  },
+  "format": "xls",
+  "encoding": null,
+  "output_sha256": "3775a9d1b337ddfb9fdc2833f714f5d87df2a9ed2c3ca69eb9b1d64a5e912c09",
+  "output_rows": 5,
+  "rows": [
+    {
+      "_refs": [
+        {
+          "source": "source1",
+          "file": "系统A_员工报销.xlsx",
+          "row": 2
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0001",
+        "Emp_Name": " 张琳 ",
+        "JoinDate": "2026/01/15",
+        "Mobile": "138-0013-8000",
+        "Amount": "1,250.50",
+        "Address": "浙江省杭州市西湖区文一路1号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0001",
+      "Emp_Name": "张琳",
+      "JoinDate": "20260115",
+      "Mobile": "13800138000",
+      "Amount": "1250.50",
+      "Province": "浙江省",
+      "City": "杭州市",
+      "District": "西湖区",
+      "_id": "1"
+    },
+    {
+      "_refs": [
+        {
+          "source": "source1",
+          "file": "系统A_员工报销.xlsx",
+          "row": 3
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0002",
+        "Emp_Name": "王芳",
+        "JoinDate": "2026-01-20",
+        "Mobile": "13900138000",
+        "Amount": "300",
+        "Address": "上海市浦东新区世纪大道2号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0002",
+      "Emp_Name": "王芳",
+      "JoinDate": "20260120",
+      "Mobile": "13900138000",
+      "Amount": "300",
+      "Province": "上海市",
+      "City": "上海市",
+      "District": "浦东新区",
+      "_id": "2"
+    },
+    {
+      "_refs": [
+        {
+          "source": "source1",
+          "file": "系统A_员工报销.xlsx",
+          "row": 5
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0004",
+        "Emp_Name": "周岚",
+        "JoinDate": "2026-01-25",
+        "Mobile": "138AB138000",
+        "Amount": "28.50",
+        "Address": "北京市海淀区中关村大街4号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0004",
+      "Emp_Name": "周岚",
+      "JoinDate": "20260125",
+      "Mobile": "13800138001",
+      "Amount": "28.50",
+      "Province": "北京市",
+      "City": "北京市",
+      "District": "海淀区",
+      "_id": "3",
+      "_errors": []
+    },
+    {
+      "_refs": [
+        {
+          "source": "source2",
+          "file": "系统B_员工费用.csv",
+          "row": 3
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0005",
+        "Emp_Name": "李明",
+        "JoinDate": "2026年2月1日",
+        "Mobile": "137 0013 8000",
+        "Amount": "10.25",
+        "Address": "江苏省南京市鼓楼区中山路5号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0005",
+      "Emp_Name": "李明",
+      "JoinDate": "20260201",
+      "Mobile": "13700138000",
+      "Amount": "10.25",
+      "Province": "江苏省",
+      "City": "南京市",
+      "District": "鼓楼区",
+      "_id": "4"
+    },
+    {
+      "_refs": [
+        {
+          "source": "source2",
+          "file": "系统B_员工费用.csv",
+          "row": 4
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0006",
+        "Emp_Name": "赵宁",
+        "JoinDate": "2026-02-02",
+        "Mobile": "13500138000",
+        "Amount": "60",
+        "Address": "广东省广州市天河区体育东路6号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0006",
+      "Emp_Name": "赵宁",
+      "JoinDate": "20260202",
+      "Mobile": "13500138000",
+      "Amount": "60",
+      "Province": "广东省",
+      "City": "广州市",
+      "District": "天河区",
+      "_id": "5"
+    }
+  ],
+  "before_decisions": [
+    {
+      "_refs": [
+        {
+          "source": "source1",
+          "file": "系统A_员工报销.xlsx",
+          "row": 2
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0001",
+        "Emp_Name": " 张琳 ",
+        "JoinDate": "2026/01/15",
+        "Mobile": "138-0013-8000",
+        "Amount": "1,250.50",
+        "Address": "浙江省杭州市西湖区文一路1号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0001",
+      "Emp_Name": "张琳",
+      "JoinDate": "20260115",
+      "Mobile": "13800138000",
+      "Amount": "1250.50",
+      "Province": "浙江省",
+      "City": "杭州市",
+      "District": "西湖区",
+      "_id": "1"
+    },
+    {
+      "_refs": [
+        {
+          "source": "source1",
+          "file": "系统A_员工报销.xlsx",
+          "row": 3
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0002",
+        "Emp_Name": "王芳",
+        "JoinDate": "2026-01-20",
+        "Mobile": "13900138000",
+        "Amount": "300",
+        "Address": "上海市浦东新区世纪大道2号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0002",
+      "Emp_Name": "王芳",
+      "JoinDate": "20260120",
+      "Mobile": "13900138000",
+      "Amount": "300",
+      "Province": "上海市",
+      "City": "上海市",
+      "District": "浦东新区",
+      "_id": "2"
+    },
+    {
+      "_refs": [
+        {
+          "source": "source1",
+          "file": "系统A_员工报销.xlsx",
+          "row": 5
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0004",
+        "Emp_Name": "周岚",
+        "JoinDate": "2026-01-25",
+        "Mobile": "138AB138000",
+        "Amount": "28.50",
+        "Address": "北京市海淀区中关村大街4号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0004",
+      "Emp_Name": "周岚",
+      "JoinDate": "20260125",
+      "Mobile": "138AB138000",
+      "Amount": "28.50",
+      "Province": "北京市",
+      "City": "北京市",
+      "District": "海淀区",
+      "_id": "3"
+    },
+    {
+      "_refs": [
+        {
+          "source": "source2",
+          "file": "系统B_员工费用.csv",
+          "row": 3
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0005",
+        "Emp_Name": "李明",
+        "JoinDate": "2026年2月1日",
+        "Mobile": "137 0013 8000",
+        "Amount": "10.25",
+        "Address": "江苏省南京市鼓楼区中山路5号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0005",
+      "Emp_Name": "李明",
+      "JoinDate": "20260201",
+      "Mobile": "13700138000",
+      "Amount": "10.25",
+      "Province": "江苏省",
+      "City": "南京市",
+      "District": "鼓楼区",
+      "_id": "4"
+    },
+    {
+      "_refs": [
+        {
+          "source": "source2",
+          "file": "系统B_员工费用.csv",
+          "row": 4
+        }
+      ],
+      "_before": {
+        "Emp_ID": "0006",
+        "Emp_Name": "赵宁",
+        "JoinDate": "2026-02-02",
+        "Mobile": "13500138000",
+        "Amount": "60",
+        "Address": "广东省广州市天河区体育东路6号"
+      },
+      "_types": {
+        "JoinDate": "date",
+        "Amount": "decimal"
+      },
+      "Emp_ID": "0006",
+      "Emp_Name": "赵宁",
+      "JoinDate": "20260202",
+      "Mobile": "13500138000",
+      "Amount": "60",
+      "Province": "广东省",
+      "City": "广州市",
+      "District": "天河区",
+      "_id": "5"
+    }
+  ],
+  "events": [
+    {
+      "refs": [
+        {
+          "source": "source1",
+          "file": "系统A_员工报销.xlsx",
+          "row": 4
+        }
+      ],
+      "reason": "筛选排除：Amount ge 0"
+    },
+    {
+      "refs": [
+        {
+          "source": "source2",
+          "file": "系统B_员工费用.csv",
+          "row": 2
+        }
+      ],
+      "reason": "完全重复记录已去重"
+    }
+  ],
+  "decisions": [
+    {
+      "row_id": "3",
+      "issue_id": "3:Mobile:0",
+      "column": "Mobile",
+      "action": "edit",
+      "value": "13800138001"
+    }
+  ],
+  "export_readback_verified": true
+}
